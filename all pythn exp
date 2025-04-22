@@ -1,0 +1,442 @@
+# Exp 3
+task = []
+task.append("clean")
+task.append("hw")
+task.append("project")
+print(task)
+task.insert(0, "vegetable")
+print(task)
+task.remove("hw")
+print(task)
+task.sort()
+print(task)
+task.reverse()
+print(task)
+task.clear()
+print(task)
+
+todo_list = ()
+todo_list += ("clean",)
+todo_list += ("hw",)
+todo_list += ("project",)
+print(todo_list)
+todo_list = tuple(task for task in todo_list if task != "hw")
+print(todo_list)
+todo_list = ("vegetable",) + todo_list
+todo_list = tuple(sorted(todo_list))
+print(todo_list)
+todo_list = tuple(reversed(todo_list))
+print(todo_list)
+todo_list = ()
+print(todo_list)
+
+# exp4.1
+jee = {"simrun", "suraj", "yashica"}
+neet = {"sahil", "aastha", "yashica"}
+mhtcet = {"priyanshu", "yashica", "simrun", "aastha", "suraj"}
+
+print("union of jee and neet", jee | neet)
+print("intersection of neet and mhtcet", neet & mhtcet)
+print("difference of neet and mhtcet", neet - mhtcet)
+print("symmetric difference of neet and jee", neet ^ jee)
+
+# exp4.2
+record = {}
+record["priyanshu"] = {
+    "grade": "A",
+    "Attendence": 100,
+    "subject": set(["maths 2", "physics", "DSA"])
+}
+record["simrun"] = {
+    "grade": "B",
+    "Attendence": 95,
+    "subject": set(["maths 2", "DSA"])
+}
+
+record["priyanshu"]["Attendence"] = 98
+record["simrun"]["grade"] = "A"
+
+print(f"name --> priyanshu\ngrade --> {record['priyanshu']['grade']}\nAttendence --> {record['priyanshu']['Attendence']}\nsubject --> {', '.join(record['priyanshu']['subject'])}")
+print(f"name --> simrun\ngrade --> {record['simrun']['grade']}\nAttendence --> {record['simrun']['Attendence']}\nsubject --> {', '.join(record['simrun']['subject'])}")
+
+# exp5.1
+num = int(input("enter the number to check if it is even or odd-->"))
+if num % 2 == 0:
+    print(f"{num} is even")
+else:
+    print(f"{num} is odd")
+
+# exp5.2
+Value = int(input("enter number of loop-->"))
+for i in range(Value):
+    num = int(input("enter the number to check if it is even or odd-->"))
+    if num % 2 == 0:
+        print(f"{num} is even")
+    else:
+        print(f"{num} is odd")
+
+# exp 5.3
+Value = int(input("enter number of loop-->"))
+i = 0
+while i < Value:
+    num = int(input("enter the number to check if it is even or odd-->"))
+    if num % 2 == 0:
+        print(f"{num} is even")
+    else:
+        print(f"{num} is odd")
+    i += 1
+
+# exp6
+def factorial():
+    fact = int(input("enter any number for factorial-->"))
+
+    if fact == 0 or fact == 1:
+        print(f"factorial of {fact} is 1")
+    elif fact < 0:
+        print("factorial for negative numbers are not defined")
+    else:
+        i = 1
+        result = 1
+        while i <= fact:
+            result = result * i
+            i += 1
+        print(f"factorial of given number is --> {result}")
+
+factorial()
+
+# exp7.1
+def prime():
+    num = int(input("enter any number to check if it is prime or not-->"))
+    if num % 2 == 0 or num % 3 == 0:
+        if num == 2 or num == 3:
+            print(f"{num} is a prime number")
+        else:
+            print(f"{num} is not a prime number")
+    else:
+        print(f"{num} is a prime number")
+
+prime()
+
+# exp7.2
+def add():
+    num1 = int(input("enter 1st number of addition -->"))
+    num2 = int(input("enter 2nd number of addition -->"))
+    return num1 + num2
+
+def sub():
+    num1 = int(input("enter 1st number of subtraction -->"))
+    num2 = int(input("enter 2nd number of subtraction -->"))
+    return num1 - num2
+
+def mul():
+    num1 = int(input("enter 1st number of multiplication -->"))
+    num2 = int(input("enter 2nd number of multiplication -->"))
+    return num1 * num2
+
+def div():
+    num1 = int(input("enter 1st number of division -->"))
+    num2 = int(input("enter 2nd number of division -->"))
+    return num1 / num2
+
+bol = True
+while bol:
+    print("1. addition\n2. subtraction\n3. multiplication\n4. division")
+    choice = int(input("enter choice code -->"))
+    if choice == 1:
+        result = add()
+        print(f"Addition of given numbers is --> {result}")
+    elif choice == 2:
+        result = sub()
+        print(f"Subtraction of given number is --> {result}")
+    elif choice == 3:
+        result = mul()
+        print(f"Multiplication of given number is --> {result}")
+    elif choice == 4:
+        result = div()
+        print(f"Division of given number is --> {result}")
+    
+    mood = input("Want to continue (y/n) --> ")
+    if mood.lower() == "n":
+        bol = False
+    else:
+        bol = True
+
+# exp8
+import string
+
+name = input("enter the name of the file-->")
+obj = open(name, "w")
+obj.write("hi , I have just created this file")
+obj.close()
+
+n = int(input("enter the number of element in length-->"))
+length = []
+for i in range(n):
+    num = int(input(f"enter length{i+1}-->"))
+    length.append(num)
+
+with open(name, "r") as file:
+    text = file.read()
+    words = text.translate(str.maketrans('', '', string.punctuation)).split()
+    filtered_words = [word for word in words if len(word) in length]
+    print(f"word of length {length}-->{filtered_words}")
+
+# exp 9
+def sus_division():
+    try:
+        num1 = float(input("Enter first number for division--> "))
+        num2 = float(input("Enter second number for division--> "))
+        result = num1 / num2
+        print(f"{num1} divided by {num2} is {result}")
+    except ZeroDivisionError:
+        print("Error: Division by zero is not allowed.")
+    except ValueError:
+        print("Error: Invalid input. Please enter a number.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+sus_division()
+
+# exp11
+class shopingcart:
+    def __init__(self):
+        self.item = []
+    
+    def add_items(self, item_name, qty):
+        item = (item_name, qty)
+        self.item.append(item)
+    
+    def delete_item(self, item_name):
+        for item in self.item:
+            if item[0] == item_name:
+                self.item.remove(item)
+                break
+    
+    def calculate_total(self):
+        total = 0
+        for item in self.item:
+            total += item[1]
+        return total
+
+cart = shopingcart()
+cart.add_items("apple", 10)
+cart.add_items("banana", 5)
+cart.add_items("orange", 6)
+
+print("--items in cart--")
+for item in cart.item:
+    print(item[0], "-", item[1])
+
+cart.delete_item("apple")
+total_qty = cart.calculate_total()
+print("total quantity is -->", total_qty)
+
+# exp 12
+import tkinter as tk
+
+root = tk.Tk()
+root.title("area calculator")
+root.geometry("900x900")
+
+l1 = tk.Label(root, text="AREA", font=("Arial", 25))
+l1.pack(pady=10)
+
+# for circle
+circle = tk.Label(root, text="CIRCLE", font=("Arial", 15))
+circle.pack(pady=7)
+l2 = tk.Label(root, text="enter the radius of the circle", font=("Arial", 10))
+l2.pack()
+circle_entry = tk.Entry(root, font=("Arial", 8))
+circle_entry.pack(pady=20)
+
+# for triangle
+triangle = tk.Label(root, text="TRIANGLE", font=("Arial", 15))
+triangle.pack(pady=7)
+l3 = tk.Label(root, text="enter the base of triangle", font=("Arial", 10))
+l3.pack(pady=10)
+triangle_entry1 = tk.Entry(root, font=("Arial", 8))
+triangle_entry1.pack(pady=5)
+l4 = tk.Label(root, text="enter the height of triangle", font=("Arial", 10))
+l4.pack()
+triangle_entry2 = tk.Entry(root, font=("Arial", 8))
+triangle_entry2.pack(pady=20)
+
+# for rectangle
+rectangle = tk.Label(root, text="RECTANGLE", font=("Arial", 15))
+rectangle.pack(pady=7)
+l5 = tk.Label(root, text="enter the length of rectangle", font=("Arial", 10))
+l5.pack()
+rectangle_entry1 = tk.Entry(root, font=("Arial", 10))
+rectangle_entry1.pack(pady=5)
+l6 = tk.Label(root, text="enter the width of rectangle", font=("Arial", 10))
+l6.pack()
+rectangle_entry2 = tk.Entry(root, font=("Arial", 10))
+rectangle_entry2.pack(pady=20)
+
+var = tk.StringVar(value="circle")
+radio1 = tk.Radiobutton(root, variable=var, value="circle", text="Circle")
+radio2 = tk.Radiobutton(root, variable=var, value="triangle", text="Triangle")
+radio3 = tk.Radiobutton(root, variable=var, value="rectangle", text="Rectangle")
+radio1.pack(pady=5)
+radio2.pack(pady=5)
+radio3.pack(pady=5)
+
+l7 = tk.Label(root, text="OUTPUT", font=("Arial", 10))
+l7.pack(pady=10)
+
+def cal():
+    choice = var.get()
+    try:
+        if choice == "circle":
+            radius = float(circle_entry.get())
+            area = 3.14 * radius ** 2
+            l7.config(text=f"area of circle with radius {radius} is {area:.2f} square unit")
+        elif choice == "triangle":
+            base = float(triangle_entry1.get())
+            height = float(triangle_entry2.get())
+            area = ((base * height) / 2)
+            l7.config(text=f"area of the triangle is {area:.2f}")
+        elif choice == "rectangle":
+            length = float(rectangle_entry1.get())
+            width = float(rectangle_entry2.get())
+            area = length * width
+            l7.config(text=f"area of the rectangle is {area:.2f}")
+        else:
+            l7.config(text="please selete a shape")
+    except ValueError:
+        l7.config(text="invalid value!!, try again")
+
+button1 = tk.Button(root, text="submit", command=cal, font=("Arial", 10))
+button1.pack(pady=10)
+
+root.mainloop()
+
+# exp 13.1
+import re
+
+pattern1 = re.compile(r'^(\+91[\s]?)?[6789]\d{9}$')
+pattern2 = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}$')
+
+def CheckPhone(number):
+    result = pattern1.fullmatch(number)
+    if result:
+        print("valid")
+    else:
+        print("invalid")
+
+def CheckEmail(em):
+    result = pattern2.fullmatch(em)
+    if result:
+        print("valid email")
+    else:
+        print("invalid email")
+
+number = input("enter your mobile number for a check-->")
+email = input("enter your email for a check-->")
+CheckPhone(number)
+CheckEmail(email)
+
+# Exp13.2
+import re
+
+def data(filepath):
+    try:
+        with open(filepath, 'r') as file:
+            material = file.read()
+        
+        phone_pattern = r'\+91[\s]?[6789]\d{9}'
+        email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}'
+        date_pattern = r'\b\d{2}/\d{2}/\d{4}\b'
+        
+        phoneno = re.findall(phone_pattern, material)
+        email = re.findall(email_pattern, material)
+        date = re.findall(date_pattern, material)
+        
+        print("emails--> ", ", ".join(email) if email else "none")
+        print("phone no--> ", ", ".join(phoneno) if phoneno else "none")
+        print("date--> ", ", ".join(date) if date else "none")
+    except Exception as e:
+        print(f"error-->{e}")
+
+filepath = input("enter the path of data file-->").strip()
+data(filepath)
+
+# exp14.1
+import numpy as np
+
+arr1d = np.array([1, 2, 3, 4, 5, 6])
+print("1D array -->\n", arr1d)
+
+arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+print("2D array -->\n", arr2d)
+
+arr3d = np.array([
+    [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+    [[10, 11, 12], [13, 14, 15], [16, 17, 18]]
+])
+print("3D array -->\n", arr3d)
+
+# slicing
+print("Slicing of 1D array (from 2 to end) -->", arr1d[2:])
+
+# indexing
+print("Indexing of 1D array -->", arr1d[4])
+print("Indexing of 2D array -->", arr2d[0, 1])
+
+# reshape
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+newarr = arr.reshape(3, 3)
+print("New array is -->", newarr)
+
+# exp14.2
+arr2 = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+mean = np.mean(arr2)
+print("Mean is -->", mean)
+
+median = np.median(arr2)
+print("Median -->", median)
+
+std = np.std(arr2)
+print("Standard deviation -->", std)
+
+var = np.var(arr2)
+print("Variance -->", var)
+
+# exp15
+import pandas as pd
+import matplotlib.pyplot as mp
+
+url = "https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv"
+df = pd.read_csv(url)
+
+print("first 8 rows of data")
+print(df.head(8))
+
+print("\n column names-->")
+print(df.columns.tolist())
+
+df_filled = df.fillna(df.mean(numeric_only=True))
+print("data after filling missing details")
+print(df_filled)
+
+df_cleaned = df.dropna()
+print("\n after deleting missing details")
+print(df_cleaned)
+
+grouped_data = df_cleaned.groupby('species')
+print("\n data after grouping-->")
+for specie, group in grouped_data:
+    print(f"\n{specie}")
+    print(group)
+
+print("\nstatistics for sepal length-->")
+print(f"mean-->{df_cleaned['sepal_length'].mean():.2f}")
+print(f"min-->{df_cleaned['sepal_length'].min():.2f}")
+print(f"max-->{df_cleaned['sepal_length'].max():.2f}")
+
+mp.hist(df_cleaned['sepal_length'], bins=5, color='red', edgecolor='black')
+mp.title("sepal length distribution")
+mp.xlabel("sepal length(cm)")
+mp.ylabel("frequency")
+mp.grid(True)
+mp.show()
